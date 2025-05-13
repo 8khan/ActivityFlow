@@ -1,0 +1,55 @@
+{
+  "name": "activityflow",
+  "displayName": "Activity Tracker",
+  "description": "Track time spent on project activities with file modification logging and Mermaid.js diagrams",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./src/extension.js",
+  "icon": "images/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "activity-tracker.startTimer",
+        "title": "Activity Tracker: Start Timer"
+      },
+      {
+        "command": "activity-tracker.pauseTimer",
+        "title": "Activity Tracker: Pause Timer"
+      },
+      {
+        "command": "activity-tracker.stopTimer",
+        "title": "Activity Tracker: Stop Timer"
+      },
+      {
+        "command": "activity-tracker.viewLogs",
+        "title": "Activity Tracker: View Logs"
+      },
+      {
+        "command": "activity-tracker.editLog",
+        "title": "Activity Tracker: Edit Log"
+      },
+      {
+        "command": "activity-tracker.deleteLog",
+        "title": "Activity Tracker: Delete Log"
+      },
+      {
+        "command": "activity-tracker.showDiagram",
+        "title": "Activity Tracker: Show Activity Diagram"
+      }
+    ]
+  },
+  "dependencies": {},  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^16.11.7",
+    "vscode": "^1.1.37"
+  },
+  "license": "SEE LICENSE IN LICENSE"
+}
