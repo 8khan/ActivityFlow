@@ -1,19 +1,20 @@
 {
   "name": "activityflow",
-  "displayName": "Activity Tracker",
+  "displayName": "ActivityFlow Tracker",
   "description": "Track time spent on project activities with file modification logging and Mermaid.js diagrams",
   "version": "0.0.1",
+  "publisher": "8khan",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "*"
-  ],
   "main": "./src/extension.js",
   "icon": "images/icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "contributes": {
     "commands": [
       {
@@ -46,7 +47,12 @@
       }
     ]
   },
-  "dependencies": {},  "devDependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/ActivityFlow.git"
+  },
+  "dependencies": {},  
+  "devDependencies": {
     "@types/vscode": "^1.85.0",
     "@types/node": "^16.11.7",
     "vscode": "^1.1.37"
