@@ -18,7 +18,11 @@ class ActivityManager {
    * @constructor
    */
   constructor() {
-    this.logFilePath = path.join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.vscode', 'activity-log.json');
+    this.logFilePath = path.join(
+      vscode.workspace.workspaceFolders[0].uri.fsPath,
+      '.vscode',
+      'activity-log.json',
+    );
   }
 
   /**
@@ -84,7 +88,7 @@ class ActivityManager {
     const confirmation = await vscode.window.showWarningMessage(
       'Are you sure you want to delete this activity?',
       { modal: true },
-      'Yes'
+      'Yes',
     );
 
     if (confirmation === 'Yes') {
@@ -103,7 +107,7 @@ class ActivityManager {
     const confirmation = await vscode.window.showWarningMessage(
       'Are you sure you want to delete all activities? This action cannot be undone.',
       { modal: true },
-      'Yes'
+      'Yes',
     );
 
     if (confirmation === 'Yes') {
@@ -121,7 +125,10 @@ class ActivityManager {
   async saveActivities(activities) {
     const dir = path.dirname(this.logFilePath);
     await fs.mkdir(dir, { recursive: true });
-    await fs.writeFile(this.logFilePath, JSON.stringify({ activities }, null, 2));
+    await fs.writeFile(
+      this.logFilePath,
+      JSON.stringify({ activities }, null, 2),
+    );
   }
 
   /**
@@ -138,9 +145,10 @@ class ActivityManager {
 
     const csvContent = [
       'ID,Start Time,End Time,Duration (seconds),Description,Files Modified',
-      ...activities.map(activity => (
-        `${activity.id},"${activity.startTime}","${activity.endTime}",${activity.duration},"${activity.description}","${(activity.filesModified || []).join(';')}"`
-      ))
+      ...activities.map(
+        (activity) =>
+          `${activity.id},"${activity.startTime}","${activity.endTime}",${activity.duration},"${activity.description}","${(activity.filesModified || []).join(';')}"`,
+      ),
     ].join('\n');
 
     const workspacePath = vscode.workspace.workspaceFolders[0].uri.fsPath;

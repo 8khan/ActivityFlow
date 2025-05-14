@@ -26,7 +26,7 @@ function getLogsWebviewContent(activities) {
                         <strong>Description:</strong> ${a.description}<br>
                         <strong>Files:</strong> ${a.filesModified.join(', ') || 'None'}
                       </li>
-                    `
+                    `,
                   )
                   .join('')}
               </ul>
@@ -44,7 +44,9 @@ function getLogsWebviewContent(activities) {
  * @returns {string} HTML content for the Mermaid.js diagram webview.
  */
 function getMermaidWebviewContent(mermaidCode) {
-  const escapedMermaidCode = mermaidCode.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const escapedMermaidCode = mermaidCode
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
   return `
     <html>
       <head>
@@ -93,7 +95,10 @@ function getConfiguration() {
  */
 function updateButtonAlignment(statusBarItems) {
   const { buttonAlignment } = getConfiguration();
-  const alignment = buttonAlignment === 'Right' ? vscode.StatusBarAlignment.Right : vscode.StatusBarAlignment.Left;
+  const alignment =
+    buttonAlignment === 'Right'
+      ? vscode.StatusBarAlignment.Right
+      : vscode.StatusBarAlignment.Left;
 
   statusBarItems.startButton.alignment = alignment;
   statusBarItems.pauseButton.alignment = alignment;
@@ -101,4 +106,9 @@ function updateButtonAlignment(statusBarItems) {
   statusBarItems.timerDisplay.alignment = alignment;
 }
 
-module.exports = { getLogsWebviewContent, getMermaidWebviewContent, getConfiguration, updateButtonAlignment };
+module.exports = {
+  getLogsWebviewContent,
+  getMermaidWebviewContent,
+  getConfiguration,
+  updateButtonAlignment,
+};

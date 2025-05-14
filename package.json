@@ -2,7 +2,11 @@
   "name": "activityflow",
   "displayName": "ActivityFlow Tracker",
   "description": "Track time spent on project activities with file modification logging and Mermaid.js diagrams",
+<<<<<<< HEAD
   "version": "0.0.1",
+=======
+  "version": "0.0.46",
+>>>>>>> ef81952 (feat: update version to 0.0.46 and enhance activation events)
   "publisher": "8khan",
   "engines": {
     "vscode": "^1.85.0"
@@ -47,6 +51,7 @@
       }
     ]
   },
+<<<<<<< HEAD
   "repository": {
     "type": "git",
     "url": "https://github.com/username/ActivityFlow.git"
@@ -55,6 +60,25 @@
   "devDependencies": {
     "@types/vscode": "^1.85.0",
     "@types/node": "^16.11.7",
+=======
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/8khan/ActivityFlow.git"
+  },
+  "scripts": {
+    "prepackage": "node ./scripts/incrementVersion.js && node ./scripts/updateReadme.js",
+    "package-extension": "npm run prepackage && vsce package",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "prettier": "^3.5.3",
+>>>>>>> ef81952 (feat: update version to 0.0.46 and enhance activation events)
     "vscode": "^1.1.37"
   },
   "license": "SEE LICENSE IN LICENSE"

@@ -2,12 +2,13 @@
 
 A Visual Studio Code extension to track time spent on project activities, log modified files (optional), and visualize activities with Mermaid.js Gantt diagrams.
 
-![Version](https://img.shields.io/badge/version-0.0.1-blue)
+![Version](https://img.shields.io/badge/version-NaN-blue)
 ![License](https://img.shields.io/badge/license-Non%20Commercial-orange)
 
 ## Overview
 
 Activity Tracker helps you monitor how much time you spend on different tasks during development. It tracks:
+
 - Time spent on activities
 - Files modified during each activity (optional)
 - Creates visual Gantt charts to represent your work timeline
@@ -27,6 +28,7 @@ Perfect for freelancers, teams that need to report time spent, or developers who
 ## Status Bar Controls
 
 The extension provides easy-to-use controls in the VS Code status bar:
+
 - **Green Play Button (▶)**: Start or resume the timer
 - **Yellow Pause Button (⏸)**: Pause the current timer
 - **Red Stop Button (⏹)**: Stop the timer and log the activity
@@ -47,12 +49,14 @@ All functionality is available through the Command Palette (`Ctrl+Shift+P` or `C
 ## Installation
 
 ### From VSIX
+
 1. Download the `.vsix` file from the releases section
 2. In VS Code, go to Extensions view (`Ctrl+Shift+X` or `Cmd+Shift+X`)
 3. Click the "..." menu at the top and select "Install from VSIX..."
 4. Choose the downloaded file
 
 ### From Source
+
 1. Clone the repository
 2. Run `npm install` to install dependencies
 3. Package the extension with `vsce package`
@@ -105,9 +109,11 @@ gantt
 ## Additional Features
 
 ### Notifications
+
 - The extension sends periodic notifications to remind you that the timer is active. The interval can be configured in the settings.
 
 ### Tags and Categories
+
 - You can now add tags to activities for categorization and filter activities by tags.
 
 ## Advanced Configuration
@@ -117,6 +123,33 @@ The extension provides the following configurable settings:
 - **`activity-tracker.timerUpdateInterval`**: Interval (in minutes) for periodic notifications. Default is 15 minutes.
 - **`activity-tracker.timeFormat`**: Format of time display (`12h` or `24h`). Default is `24h`.
 - **`activity-tracker.language`**: Language of the interface. Default is `en` (English).
+
+## Versioning and Packaging
+
+### Automatic Version Increment
+
+The extension now automatically increments the version number in `package.json` before packaging. This ensures that each package has a unique version.
+
+### Packaging the Extension
+
+1. Run the following command to package the extension:
+   ```bash
+   npm run prepackage && vsce package
+   ```
+2. This will:
+   - Increment the patch version in `package.json`.
+   - Generate a `.vsix` file for the extension.
+
+### Installing the Packaged Extension
+
+1. After packaging, install the `.vsix` file:
+   - Open the Extensions view in VS Code (`Ctrl+Shift+X` or `Cmd+Shift+X`).
+   - Click the `...` menu and select `Install from VSIX...`.
+   - Choose the generated `.vsix` file.
+
+### Local Mermaid.js Support
+
+If there is no internet connection, the extension will use a local version of `mermaid.min.js` located in the `local/` directory. Ensure the file is present for offline functionality.
 
 ## Requirements
 
@@ -144,6 +177,7 @@ If you encounter issues:
 ## Roadmap
 
 Future improvements planned:
+
 - Configurable settings for timer behavior
 - Export of activities to CSV/Excel formats
 - Integration with project management tools

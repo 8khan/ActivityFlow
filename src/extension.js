@@ -8,7 +8,7 @@ const vscode = require('vscode');
 const Timer = require('./timer');
 const ActivityManager = require('./activityManager');
 const Diagram = require('./diagram');
-const { registerCommands } = require('./commands');
+const { registerCommands, isRunning, isPaused } = require('./commands');
 const { createStatusBarItems, updateStatusBar } = require('./statusBar');
 
 /**
@@ -29,11 +29,16 @@ function getAdvancedConfiguration() {
  */
 function startNotificationReminder() {
   const { timerUpdateInterval } = getAdvancedConfiguration();
-  setInterval(() => {
-    if (isRunning && !isPaused) {
-      vscode.window.showInformationMessage('The timer is still running. Keep up the good work!');
-    }
-  }, timerUpdateInterval * 60 * 1000);
+  setInterval(
+    () => {
+      if (isRunning && !isPaused) {
+        vscode.window.showInformationMessage(
+          'The timer is still running. Keep up the good work!',
+        );
+      }
+    },
+    timerUpdateInterval * 60 * 1000,
+  );
 }
 
 /**
@@ -44,7 +49,9 @@ function startNotificationReminder() {
 function activate(context) {
   // Check if a workspace is open
   if (!vscode.workspace.workspaceFolders) {
-    vscode.window.showWarningMessage('Activity Tracker requires an open workspace.');
+    vscode.window.showWarningMessage(
+      'Activity Tracker requires an open workspace.',
+    );
     return;
   }
 
@@ -61,7 +68,9 @@ function activate(context) {
    */
   function updateTimerDisplay() {
     if (isRunning && !isPaused) {
-      const elapsed = timer.getDuration() + (new Date() - new Date(timer.getStartTime())) / 1000;
+      const elapsed =
+        timer.getDuration() +
+        (new Date() - new Date(timer.getStartTime())) / 1000;
       const hours = Math.floor(elapsed / 3600);
       const minutes = Math.floor((elapsed % 3600) / 60);
       const seconds = Math.floor(elapsed % 60);
@@ -70,7 +79,11 @@ function activate(context) {
   }
 
   // Register commands
-  registerCommands(context, () => updateStatusBar(isRunning, isPaused, statusBarItems), updateTimerDisplay);
+  registerCommands(
+    context,
+    () => updateStatusBar(isRunning, isPaused, statusBarItems),
+    updateTimerDisplay,
+  );
 
   // Initialize button visibility
   updateStatusBar(isRunning, isPaused, statusBarItems);
@@ -80,5 +93,5 @@ function activate(context) {
 }
 
 module.exports = {
-  activate
+  activate,
 };

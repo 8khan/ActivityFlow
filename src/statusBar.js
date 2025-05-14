@@ -6,28 +6,40 @@ const vscode = require('vscode');
  * @returns {Object} An object containing the status bar items: startButton, pauseButton, stopButton, and timerDisplay.
  */
 function createStatusBarItems(context) {
-  const startButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+  const startButton = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    100,
+  );
   startButton.command = 'activity-tracker.startTimer';
   startButton.text = '$(play)';
   startButton.tooltip = 'Start Activity Timer';
   startButton.color = '#28a745'; // Green
   context.subscriptions.push(startButton);
 
-  const pauseButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 99);
+  const pauseButton = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    99,
+  );
   pauseButton.command = 'activity-tracker.pauseTimer';
   pauseButton.text = '$(pause)';
   pauseButton.tooltip = 'Pause Activity Timer';
   pauseButton.color = '#ffc107'; // Yellow
   context.subscriptions.push(pauseButton);
 
-  const stopButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 98);
+  const stopButton = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    98,
+  );
   stopButton.command = 'activity-tracker.stopTimer';
   stopButton.text = '$(stop)';
   stopButton.tooltip = 'Stop Activity Timer';
   stopButton.color = '#dc3545'; // Red
   context.subscriptions.push(stopButton);
 
-  const timerDisplay = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 97);
+  const timerDisplay = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    97,
+  );
   timerDisplay.text = 'Timer: 00:00:00';
   timerDisplay.tooltip = 'Elapsed Time';
   context.subscriptions.push(timerDisplay);
@@ -46,18 +58,18 @@ function updateStatusBar(isRunning, isPaused, statusBarItems) {
 
   if (isRunning && !isPaused) {
     startButton.hide();
-    pauseButton.show();
     stopButton.show();
+    pauseButton.show();
     timerDisplay.show();
   } else if (isRunning && isPaused) {
-    startButton.show();
-    pauseButton.hide();
+    startButton.hide();
     stopButton.show();
+    pauseButton.hide();
     timerDisplay.show();
   } else {
     startButton.show();
-    pauseButton.hide();
     stopButton.hide();
+    pauseButton.hide();
     timerDisplay.hide();
   }
 }

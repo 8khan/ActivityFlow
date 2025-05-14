@@ -60,28 +60,38 @@ class Diagram {
           return '';
         }
 
-        const startTime = activity.startTime ? formatDate(activity.startTime) : formatDate(new Date());
-        const endTime = activity.endTime ? formatDate(activity.endTime) : formatDate(new Date());
-        const description = escapeMermaidText(activity.description || `Activity_${index + 1}`);
+        const startTime = activity.startTime
+          ? formatDate(activity.startTime)
+          : formatDate(new Date());
+        const endTime = activity.endTime
+          ? formatDate(activity.endTime)
+          : formatDate(new Date());
+        const description = escapeMermaidText(
+          activity.description || `Activity_${index + 1}`,
+        );
         const id = `task${index}`;
-        
+
         // Ensure dates are not identical
         const startDate = new Date(startTime);
         let endDate = new Date(endTime);
         if (startDate.getTime() >= endDate.getTime()) {
           endDate = new Date(startDate.getTime() + 1000); // Add 1 second
         }
-        
+
         // Simplify file representation
         let filesLine = '';
-        if (activity.includeFiles && Array.isArray(activity.filesModified) && activity.filesModified.length > 0) {
+        if (
+          activity.includeFiles &&
+          Array.isArray(activity.filesModified) &&
+          activity.filesModified.length > 0
+        ) {
           // Use 'Files' as a simple label instead of including full paths
           filesLine = `    Files :f${id}, ${startTime}, ${endDate.toISOString().replace('T', ' ').substring(0, 19)}`;
         }
 
         // Main task
         const taskLine = `    ${description} :${id}, ${startTime}, ${endDate.toISOString().replace('T', ' ').substring(0, 19)}`;
-        
+
         return [taskLine, filesLine].filter(Boolean).join('\n');
       })
       .filter(Boolean)
